@@ -65,6 +65,14 @@ def load_and_conduct_quiz():
     print(f"\nQuiz finished! Your score: {score}/{total}")
     print("check your result in quiz_results.txt")
 
+def clear_files():
+    confirm = input("Are you sure you want to clear all quiz data? (y/n): ").strip().lower()
+    if confirm == 'y':
+        open("questions.txt", "w").close()
+        open("quiz_results.txt", "w").close()
+        print("All questions and results have been cleared.")
+    else:
+        print("Clear operation cancelled.")
     
 
 print("Welcome to the Quiz Application!")
@@ -78,7 +86,8 @@ while True:
     print("1. Add a new question")
     print("2. Start the quiz")
     print("3. View quiz results")
-    print("4. Exit")
+    print("4. Clear all questions and results")
+    print("5. Exit")
     
     choice = input("Enter your choice (1/2/3/4): ").strip()
     
@@ -91,8 +100,9 @@ while True:
             results = result_file.read()
             print("\nQuiz Results:")
             print(results)
-    
     elif choice == '4':
+        clear_files()
+    elif choice == '5':
         print("Exiting the quiz application. Goodbye!")
         break
     else:
